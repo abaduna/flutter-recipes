@@ -57,10 +57,24 @@ class ZippiriNetworkService {
 
   static Future<dynamic> unauthorizedPost(String url, dynamic body,
     Function successCallback, Function errorCallback) async {
-      print("unauth post to url: $url");
-    var response = await http.post(Uri.parse(url),
-        headers: _unauthorizedHeaders(), body: json.encode(body));
-    await _processResponse(response, successCallback, errorCallback);
+    try {
+      print("Enviando POST a: $url");
+      print("Body: ${json.encode(body)}");
+      
+      var response = await http.post(
+        Uri.parse(url),
+        headers: _unauthorizedHeaders(),
+        body: json.encode(body)
+      );
+      
+      print("Código de estado: ${response.statusCode}");
+      print("Respuesta: ${response.body}");
+      
+      await _processResponse(response, successCallback, errorCallback);
+    } catch (e) {
+      print("Excepción en unauthorizedPost: $e");
+      errorCallback('Error: $e');
+    }
   }
 
   static Future<dynamic> put(String url, dynamic body, Function successCallback,
@@ -102,6 +116,7 @@ class ZippiriNetworkService {
 
   static Map<String, String> _unauthorizedHeaders() => {
     "Content-Type": "application/json",
+    "Accept": "application/json",
   };
 
   static Future<dynamic> _processResponse(http.Response response,

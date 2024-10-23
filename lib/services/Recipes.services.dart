@@ -19,5 +19,23 @@ class RecipesService {
     );
     return result;
   }
+  static Future<dynamic> postRecipesWithoutAuth(String url, dynamic body) async {
+    dynamic result;
+    print("body");
+    print(body);
+    await ZippiriNetworkService.unauthorizedPost(
+      url,
+      body,
+      (response) {
+        print('Respuesta exitosa post: ${response.body}');
+        result = response.body;
+      },
+      (error) {
+        print('Error en la solicitud: $error');
+        result = null;
+      },
+    );
+    return result;
+  }
 }
 
