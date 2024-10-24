@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:recipes/main.dart';
+
+import 'package:recipes/pages/FavetPage.page.dart';
+import 'package:recipes/pages/MiPaginaInicio.dart';
 import 'package:recipes/services/Recipes.services.dart';
+
+import '../widgets/custom_bottom_navbar.dart';
 
 class NewRecipes extends StatefulWidget {
   const NewRecipes({super.key});
@@ -15,11 +19,14 @@ class _NewRecipesState extends State<NewRecipes> {
   List<String> ingredientsCantidades = [];
   late RecipesService recipesService;
   String description = '';
+  int _selectedIndex = 1;
+
   @override
   void initState() {
     super.initState();
     recipesService = RecipesService();
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -137,6 +144,36 @@ class _NewRecipesState extends State<NewRecipes> {
           ],
         ),
       ),
+      bottomNavigationBar: CustomBottomNavbar(
+      selectedIndex: _selectedIndex,
+      onItemTapped: (index) {
+        setState(() {
+          _selectedIndex = index;
+        });
+        if (index == 0) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MiPaginaInicio(),
+            ),
+          );
+        } else if (index == 2) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => FavPage(favRicipes: []),
+            ),
+          );
+        } else if (index == 1) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => NewRecipes(),
+            ),
+          );
+        }
+      },
+    ),
     );
   }
 }
