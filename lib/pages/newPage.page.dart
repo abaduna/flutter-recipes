@@ -5,6 +5,7 @@ import 'package:recipes/pages/MiPaginaInicio.dart';
 import 'package:recipes/services/Recipes.services.dart';
 
 import '../widgets/custom_bottom_navbar.dart';
+import 'SelectFoodPage.dart';
 
 class NewRecipes extends StatefulWidget {
   const NewRecipes({super.key});
@@ -169,6 +170,13 @@ class _NewRecipesState extends State<NewRecipes> {
             context,
             MaterialPageRoute(
               builder: (context) => NewRecipes(),
+            ),
+          );
+        } else if (index == 3) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SelectFoodPage(),
             ),
           );
         }

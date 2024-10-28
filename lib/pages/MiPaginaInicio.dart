@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:recipes/pages/SelectFoodPage.dart';
 import 'package:recipes/pages/newPage.page.dart';
 import 'package:recipes/services/Recipes.services.dart';
 import 'package:recipes/widgets/custom_bottom_navbar.dart';
@@ -135,7 +136,7 @@ class _MiPaginaInicioState extends State<MiPaginaInicio> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => FavPage(favRicipes: []),
+              builder: (context) => FavPage(favRicipes: favRicipes),
             ),
           );
         } else if (index == 1) {
@@ -143,6 +144,14 @@ class _MiPaginaInicioState extends State<MiPaginaInicio> {
             context,
             MaterialPageRoute(
               builder: (context) => NewRecipes(),
+            ),
+          );
+        }
+        else if (index == 3) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SelectFoodPage(),
             ),
           );
         }

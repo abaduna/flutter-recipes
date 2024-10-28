@@ -27,9 +27,17 @@ class CustomBottomNavbar extends StatelessWidget {
           icon: Icon(Icons.favorite),
           label: 'Favoritos',
         ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.restaurant_menu),
+          label: 'Seleccionar Comida',
+        ),
       ],
       currentIndex: selectedIndex,
       onTap: onItemTapped,
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: Colors.blue,
+      unselectedItemColor: Colors.grey,
+      showUnselectedLabels: true,
     );
   }
 }
